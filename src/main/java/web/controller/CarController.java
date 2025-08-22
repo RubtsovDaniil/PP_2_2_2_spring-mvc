@@ -5,27 +5,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import web.dao.CarDaoImpl;
+import web.service.CarServiceImpl;
 
 @Controller
 
 public class CarController {
 
-    private final CarDaoImpl carDaoimpl;
+    private final CarServiceImpl carServiceImpl;
 
     @Autowired
-    public CarController(CarDaoImpl carDaoimpl) {
-        this.carDaoimpl = carDaoimpl;
+    public CarController(CarServiceImpl carServiceImpl) {
+        this.carServiceImpl = carServiceImpl;
     }
 
 
     @GetMapping("/cars")
-    public String show(@RequestParam(value = "count", required = false) Integer count, Model model) {
-        if (count == null || count >= 5) {
-            model.addAttribute("cars", carDaoimpl.index());
+    public String show(@RequestParam(value = "count", required = false, defaultValue = "5") Integer count, Model model) {
+        if (count >= 5) {
+            model.addAttribute("cars", carServiceImpl.index());
             return "cars";
         } else {
-            model.addAttribute("cars", carDaoimpl.show(count));
+            model.addAttribute("cars", carServiceImpl.show(count));
             return "show";
         }
     }
