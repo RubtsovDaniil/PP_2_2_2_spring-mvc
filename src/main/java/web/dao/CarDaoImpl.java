@@ -21,7 +21,7 @@ public class CarDaoImpl implements CarDao {
     }
 
     @Override
-    public List<Car> show(Integer count) {
+    public List<Car> GetByCar(Integer count) {
         if (count <= 0) {
             return new ArrayList<>();
         } else {

@@ -12,7 +12,7 @@ public class CarServiceImpl implements CarService {
     CarDao userDao = new CarDaoImpl();
 
     @Override
-    public List<Car> show(Integer count) {
-        return userDao.show(count);
+    public List<Car> GetByCar(Integer count) {
+        return userDao.GetByCar(count);
     }
 }
